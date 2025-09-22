@@ -17,7 +17,7 @@ jellyfin.{$DOMAIN} {
 }
 
 # Stirling PDF
-pdf.{$DOMAIN} {
+stirling-pdf.{$DOMAIN} {
     reverse_proxy stirling-pdf:8080
 }
 
@@ -42,17 +42,17 @@ overseerr.{$DOMAIN} {
 }
 
 # qBittorrent
-torrent.{$DOMAIN} {
+qbittorrent.{$DOMAIN} {
     reverse_proxy qbittorrent:8080
 }
 
 # Immich Photo Management
-photos.{$DOMAIN} {
+immich.{$DOMAIN} {
     reverse_proxy immich-server:2283
 }
 
 # Syncthing File Sync
-sync.{$DOMAIN} {
+syncthing.{$DOMAIN} {
     reverse_proxy syncthing:8384 {
             header_up Host {upstream_hostport}
 }
