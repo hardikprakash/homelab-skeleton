@@ -21,7 +21,7 @@ A complete Docker Compose-based homelab stack with reverse proxy, media manageme
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/hardikprakash/homelab-skeleton.git
    cd homelab-skeleton
    ```
 
