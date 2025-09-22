@@ -1,0 +1,72 @@
+{
+    # Global options
+    email {$LETSENCRYPT_EMAIL}
+    
+    # Use Cloudflare DNS challenge for wildcard certificates
+    acme_dns cloudflare {$CLOUDFLARE_API_TOKEN}
+}
+
+# Main domain redirect to a landing page or primary service
+{$DOMAIN} {
+    respond "Homelab Services Available" 200
+}
+
+# Jellyfin Media Server
+jellyfin.{$DOMAIN} {
+    reverse_proxy jellyfin:8096
+}
+
+# Stirling PDF
+pdf.{$DOMAIN} {
+    reverse_proxy stirling-pdf:8080
+}
+
+# Radarr (Movies)
+radarr.{$DOMAIN} {
+    reverse_proxy radarr:7878
+}
+
+# Sonarr (TV Shows)
+sonarr.{$DOMAIN} {
+    reverse_proxy sonarr:8989
+}
+
+# Prowlarr (Indexer Manager)
+prowlarr.{$DOMAIN} {
+    reverse_proxy prowlarr:9696
+}
+
+# Overseerr (Media Requests)
+overseerr.{$DOMAIN} {
+    reverse_proxy overseerr:5055
+}
+
+# qBittorrent
+torrent.{$DOMAIN} {
+    reverse_proxy qbittorrent:8080
+}
+
+# Immich Photo Management
+photos.{$DOMAIN} {
+    reverse_proxy immich-server:2283
+}
+
+# Syncthing File Sync
+sync.{$DOMAIN} {
+    reverse_proxy syncthing:8384 {
+            header_up Host {upstream_hostport}
+}
+
+scrutiny.{$DOMAIN} {
+	reverse_proxy scrutiny:8080
+}
+
+# Optional: File browser for Samba shares (if you add a web file manager)
+# files.{$DOMAIN} {
+#     reverse_proxy filebrowser:8080
+# }
+
+# Optional: Monitoring/Dashboard (if you add Portainer, Heimdall, etc.)
+# dashboard.{$DOMAIN} {
+#     reverse_proxy portainer:9000
+# }
